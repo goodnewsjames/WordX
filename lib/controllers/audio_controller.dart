@@ -17,8 +17,8 @@ class AudioController extends GetxController {
     try {
       await _backgroundPlayer.setAsset('assets/sounds/background_sound.mp3');
       await _backgroundPlayer.setLoopMode(LoopMode.one);
-      await _backgroundPlayer.play();
       isBackgroundPlaying.value = true;
+      await _backgroundPlayer.play();
     } catch (e) {
       print("Error starting background sound: $e");
     }
