@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:wordx/controllers/audio_controller.dart';
 import 'package:wordx/models/constants.dart';
 import 'dart:math';
 import 'package:wordx/models/level.dart';
@@ -9,7 +10,8 @@ import 'package:wordx/views/widgets/level_passed_box.dart';
 class GameController extends GetxController {
   final GetStorage _storage = GetStorage();
   late List<Level> levels;
-
+  final AudioController soundController =
+      Get.find<AudioController>();
   var enteredLetters = <String>[].obs;
   var currentWordLength = 0.obs;
   var currentLevel = 1.obs;
@@ -40,7 +42,14 @@ class GameController extends GetxController {
       currentWordLength.value,
       "",
     );
+    soundController.startBackgroundSound();
     refresh();
+  }
+
+  @override
+  void onClose() {
+    soundController.stopBackgroundSound();
+    super.onClose();
   }
 
   void loadLevels() {
@@ -121,7 +130,7 @@ class GameController extends GetxController {
       isLevelPassed.value = true;
       totalPoints.value += 10;
       _storage.write('totalPoints', totalPoints.value);
-      
+
       Get.dialog(
         Dialog(
           shape: RoundedRectangleBorder(
@@ -130,6 +139,7 @@ class GameController extends GetxController {
           child: LevelPassedBox(),
         ),
       );
+      soundController.playLevelPassed();
       Future.delayed(Duration(seconds: 3), () {
         Get.back();
       });
@@ -247,11 +257,33 @@ class GameController extends GetxController {
     });
   }
 
+void resetGame() {
+    currentLevel.value = 1;
+    _storage.write('currentLevel', currentLevel.value);
+    totalPoints.value = 0;
+    _storage.write('totalPoints', totalPoints.value);
+    currentWordLength.value = levels
+        .firstWhere(
+          (level) =>
+              level.levelNumber == currentLevel.value,
+        )
+        .word
+        .length
+        .toInt();
+    enteredLetters.value = List.filled(
+      currentWordLength.value,
+      "",
+    );
+    isLevelPassed.value = false;
+    feedbackMessage.value = '';
+    trialsLeft.value = 6;
+    _storage.write('trialsLeft', trialsLeft.value);
+    gameState.value = '';
+  }
+
   Level getCurrentLevel() {
     return levels.firstWhere(
       (level) => level.levelNumber == currentLevel.value,
     );
   }
-
-  
 }

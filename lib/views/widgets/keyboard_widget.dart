@@ -22,8 +22,8 @@ class KeyboardWidget extends StatelessWidget {
 
           physics: NeverScrollableScrollPhysics(),
           gridDelegate:
-              SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 60,
+              SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 6,
               ),
           itemCount: controller
               .getCurrentLevel()

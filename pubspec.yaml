@@ -40,6 +40,7 @@ dependencies:
   google_fonts: ^6.2.1
   # audioplayers: ^6.5.0
   just_audio: ^0.10.4
+  haptic_feedback: ^0.5.1+1
 
 dev_dependencies:
   flutter_test:

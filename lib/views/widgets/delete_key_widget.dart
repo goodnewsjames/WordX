@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wordx/controllers/audio_controller.dart';
 import 'package:wordx/controllers/game_controller.dart';
 
 class DeleteKeyWidget extends StatelessWidget {
-   DeleteKeyWidget({
-    super.key,
-  });
+  DeleteKeyWidget({super.key});
 
-  final GameController controller = Get.find<GameController>();
-
+  final GameController controller =
+      Get.find<GameController>();
+  final AudioController soundController =
+      Get.find<AudioController>();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         controller.deleteLastLetter();
+        soundController.playDeleteTap();
       },
       child: Container(
         alignment: Alignment.center,

@@ -16,8 +16,8 @@ class WordXBindings extends Bindings {
   }
 
   void _injectControllers() {
+    Get.put(AudioController(), permanent: true);
     Get.put(GameController(), permanent: true);
     Get.lazyPut(() => EffectsController());
-    Get.put(AudioController(), permanent: true);
   }
 }
