@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:wordx/controllers/game_controller.dart';
 import 'package:wordx/views/widgets/add_diamond_widget.dart';
@@ -15,7 +16,6 @@ class GamePage extends StatelessWidget {
 
   final GameController controller =
       Get.find<GameController>();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -36,44 +36,45 @@ class GamePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Obx(
-                () => ScoreCardWidget(
-                  currentLevel:
-                      controller.currentLevel.string,
-                  trilsLeft: controller.trialsLeft.string,
-                  points: controller.totalPoints.string,
-                ),
-              ),
+               ScoreCardWidget(),
               Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 30,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
                 ),
                 child: Row(
                   mainAxisAlignment:
                       MainAxisAlignment.spaceBetween,
                   children: [
                     AddHintWidget(),
+                    FeedbackWidget(),
 
                     AddDiamondWidget(),
                   ],
                 ),
               ),
+
               Padding(
-                padding: EdgeInsetsGeometry.symmetric(
-                  vertical: 10,
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  "Guess the word",
+                  style: TextStyle(
+                    color: Color(0XFFFF3D12),
+                    fontFamily: "Comic-Helvetic",
+                    fontWeight: FontWeight.w900,
+                    fontSize: 32,
+                  ),
                 ),
-                child: FeedbackWidget(),
               ),
               SizedBox(
-                height: 300,
+                height: 200,
                 child: Center(child: HintBox()),
               ),
-
               Center(child: InputBoxWidget()),
+              SizedBox(height: 20),
 
-              SizedBox(height: 30),
               KeyboardWidget(),
               DeleteKeyWidget(),
+              SizedBox(height: 20),
             ],
           ),
         ),

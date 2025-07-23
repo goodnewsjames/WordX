@@ -14,8 +14,8 @@ class HintBox extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Container(
-              height: 200,
-              width: 335,
+              height: 160,
+              width: 300,
               padding: EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 20,

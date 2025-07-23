@@ -10,15 +10,11 @@ class FeedbackWidget extends StatelessWidget {
     return Obx(
       () {
         return Container(
-          height: 70,
-          width: 335,
+          height: 65,
+          width: 220,
+          padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.1),
-            border: Border.all(
-              color: Color(0XFF3E87FF),
-              width: 3,
-            ),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Center(
             child: Text(
@@ -26,9 +22,9 @@ class FeedbackWidget extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: "Comic-Helvetic",
-                // color: Color(0XFFD3D3D0),
+                color: Colors.black,
                 fontWeight: FontWeight.w300,
-                fontSize: 20,
+                fontSize: 16,
               ),
             ),
           ),

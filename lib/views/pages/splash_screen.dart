@@ -24,30 +24,26 @@ class SplashScreen extends StatelessWidget {
               ),
             ),
             child: Center(
-              // child: SvgPicture.asset(
-              //   "assets/svgs/game_title.svg",
-              //   height: 100,
-              //   width: 300,
-              // ),
+            
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Guess the word",
+                    "WordX",
                     style: TextStyle(
                       color: Color(0XFFFF3D12),
                       fontFamily: "Comic-Helvetic",
                       fontWeight: FontWeight.w900,
-                      fontSize: 32,
+                      fontSize: 40,
                     ),
                   ),
                   Text(
-                    "Word puzzle game",
+                    "Word guessing game",
                     style: TextStyle(
                       color: Color(0XFFFF7C3B),
                       fontFamily: "Comic-Helvetic",
                       fontWeight: FontWeight.w300,
-                      fontSize: 30,
+                      fontSize: 16,
                     ),
                   ),
                 ],

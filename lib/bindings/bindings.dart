@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:wordx/controllers/audio_controller.dart';
 import 'package:wordx/controllers/effect_controller.dart';
 import 'package:wordx/controllers/game_controller.dart';
 
@@ -17,5 +18,6 @@ class WordXBindings extends Bindings {
   void _injectControllers() {
     Get.put(GameController(), permanent: true);
     Get.lazyPut(() => EffectsController());
+    Get.put(AudioController(), permanent: true);
   }
 }

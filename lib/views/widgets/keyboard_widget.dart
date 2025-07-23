@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wordx/controllers/audio_controller.dart';
 import 'package:wordx/controllers/game_controller.dart';
 import 'package:wordx/views/widgets/filled_box_widget.dart';
 
 class KeyboardWidget extends StatelessWidget {
-   KeyboardWidget({
-    super.key,
-  });
+  KeyboardWidget({super.key});
 
-  final GameController controller = Get.find<GameController>();
-
+  final GameController controller =
+      Get.find<GameController>();
+  final AudioController soundController =
+      Get.find<AudioController>();
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -21,11 +22,8 @@ class KeyboardWidget extends StatelessWidget {
 
           physics: NeverScrollableScrollPhysics(),
           gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount:
-                    MediaQuery.of(context).size.width < 400
-                    ? 6
-                    : 26,
+              SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 60,
               ),
           itemCount: controller
               .getCurrentLevel()
@@ -37,6 +35,7 @@ class KeyboardWidget extends StatelessWidget {
                 .keyboardCharacters[index];
             return GestureDetector(
               onTap: () {
+                soundController.playDeleteTap();
                 controller.addLetter(letter);
               },
               child: FilledBoxWidget(letter: letter),
